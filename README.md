@@ -1,2 +1,2 @@
-# openbb-energy
-OpenBB Toolkit for Energy Analysis
+# Energy Analysis Data and Tools for OpenBB
+
