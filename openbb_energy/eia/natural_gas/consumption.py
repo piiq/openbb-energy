@@ -1,13 +1,10 @@
 """EIA Natural Gas Consumption Summary Fetcher for OpenBB Energy."""
 
-from typing import Any, Dict, List, Literal, Optional
+from typing import Literal, Optional
 
 from openbb_core.provider.abstract.data import Data
-from openbb_core.provider.abstract.fetcher import Fetcher
 from openbb_core.provider.abstract.query_params import QueryParams
 from pydantic import Field
-
-from ..utils.helpers import make_eia_params, make_eia_request
 
 
 class ConsumptionQueryParams(QueryParams):
@@ -87,7 +84,7 @@ class ConsumptionQueryParams(QueryParams):
     )
 
 
-class ConsumptionByEndUseData(Data):
+class ConsumptionData(Data):
     """EIA natural gas survey data."""
 
     period: str = Field(description="Period")
@@ -103,50 +100,3 @@ class ConsumptionByEndUseData(Data):
     )
     value: Optional[float | str] = Field(description="Value")
     units: str = Field(description="Units of measurement")
-
-
-class ConsumptionByEndUseFetcher(
-    Fetcher[
-        ConsumptionQueryParams,
-        List[ConsumptionByEndUseData],
-    ]
-):
-    """ConsumptionByEndUse Fetcher."""
-
-    @staticmethod
-    def transform_query(params: Dict[str, Any]) -> ConsumptionQueryParams:
-        """Transform query."""
-        return ConsumptionQueryParams(**params)
-
-    @staticmethod
-    def extract_data(  # pylint: disable=unused-argument
-        query: ConsumptionQueryParams,
-        credentials: Optional[Dict[str, str]],
-        **kwargs: Any,
-    ) -> List[dict]:
-        """Extract data."""
-        api_key = credentials.get("eia_api_key") if credentials else ""
-
-        params = make_eia_params(
-            query=query, facet_list=["duoarea", "process", "series"]
-        )
-        params["api_key"] = api_key
-
-        response = make_eia_request(
-            api="natural-gas",
-            route1="cons",
-            route2="sum",
-            api_version=2,
-            params=params,
-        )
-        data: List[Dict] = response["response"]["data"]
-        return data
-
-    @staticmethod
-    def transform_data(  # pylint: disable=unused-argument
-        query: ConsumptionQueryParams, data: List[dict], **kwargs: Any
-    ) -> List[ConsumptionByEndUseData]:
-        """Transform data."""
-        for d in data:
-            d["period"] = str(d["period"])
-        return [ConsumptionByEndUseData(**d) for d in data]
