@@ -4,6 +4,7 @@ from openbb_core.provider.abstract.provider import Provider
 from openbb_energy.eia.natural_gas.consumption import (
     ConsumptionByEndUseFetcher,
     ConsumptionNumberOfConsumersFetcher,
+    ConsumptionShareOfGasDeliveredFetcher,
 )
 from openbb_energy.eia.natural_gas.exploration_and_reserves import (
     EnRCrudeOilPlusLeaseCondensateFetcher,
@@ -17,6 +18,7 @@ provider = Provider(
     fetcher_dict={
         "ConsumptionByEndUse": ConsumptionByEndUseFetcher,
         "ConsumptionNumberOfConsumers": ConsumptionNumberOfConsumersFetcher,
+        "ConsumptionShareOfGasDelivered": ConsumptionShareOfGasDeliveredFetcher,
         "EnRCrudeOilPlusLeaseCondensate": EnRCrudeOilPlusLeaseCondensateFetcher,
     },
 )
