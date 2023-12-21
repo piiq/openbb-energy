@@ -13,7 +13,6 @@ openbb-core = "^1.1.0"
 [tool.poetry.group.dev.dependencies]
 openbb-devtools = "^1.0.0"
 types-requests = "^2.31.0.10"
-openbb = "^4.1.0"
 
 [build-system]
 requires = ["poetry-core"]
