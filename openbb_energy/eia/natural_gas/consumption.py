@@ -5,7 +5,7 @@ from ..utils.helpers import make_eia_params, make_eia_request, process_warnings
 from .natural_gas import (
     NaturalGasQueryParams,
     NaturalGasFetcher,
-    NaturalGasMonthlyFetcher,
+    NaturalGasAnnualFetcher,
     NATURAL_GAS_FACET_LIST,
 )
 
@@ -37,7 +37,7 @@ class ConsumptionByEndUseFetcher(NaturalGasFetcher):
         return data
 
 
-class ConsumptionNumberOfConsumersFetcher(NaturalGasMonthlyFetcher):
+class ConsumptionNumberOfConsumersFetcher(NaturalGasAnnualFetcher):
     """Number of consumers Fetcher."""
 
     @staticmethod

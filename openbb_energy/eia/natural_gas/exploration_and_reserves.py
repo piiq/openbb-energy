@@ -3,13 +3,13 @@ from typing import Any, Dict, List, Optional
 from .natural_gas import (
     NaturalGasQueryParams,
     # NaturalGasFetcher,
-    NaturalGasMonthlyFetcher,
+    NaturalGasAnnualFetcher,
 )
 
 from ..utils.helpers import make_eia_params, make_eia_request, process_warnings
 
 
-class EnRCrudeOilPlusLeaseCondensateFetcher(NaturalGasMonthlyFetcher):
+class EnRCrudeOilPlusLeaseCondensateFetcher(NaturalGasAnnualFetcher):
     """Crude Oil Plus Lease Condensate Fetcher."""
 
     @staticmethod

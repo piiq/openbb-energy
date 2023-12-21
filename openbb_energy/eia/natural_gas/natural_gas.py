@@ -150,7 +150,7 @@ class NaturalGasFetcher(NaturalGasBaseFetcher):
 
 
 # pylint: disable=abstract-method
-class NaturalGasMonthlyFetcher(NaturalGasBaseFetcher):
+class NaturalGasAnnualFetcher(NaturalGasBaseFetcher):
     """Natural Gas Fetcher."""
 
     @staticmethod
