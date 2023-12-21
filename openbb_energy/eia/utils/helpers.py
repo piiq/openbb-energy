@@ -1,8 +1,11 @@
 """EIA API helpers."""
+import warnings
 from typing import Dict, List, Optional
 
 import requests
 from openbb_core.provider.abstract.query_params import QueryParams
+
+_warn = warnings.warn
 
 BASE_URL = "https://api.eia.gov"
 
@@ -60,3 +63,14 @@ def make_eia_request(
         timeout=60,
     )
     return r.json()
+
+
+def process_warnings(response: Dict) -> None:
+    """Process warnings."""
+    if "warnings" in response and len(response["warnings"]) > 0:
+        for warning in response["warnings"]:
+            if warning["warning"] == "incomplete return":
+                _warn(
+                    f"{warning['warning']} : {warning['description']}. "
+                    + f"Total rows available: {response['total']}."
+                )
