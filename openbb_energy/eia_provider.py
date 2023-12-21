@@ -1,12 +1,13 @@
 """EIA Data Provider for OpenBB Energy."""
 from openbb_core.provider.abstract.provider import Provider
-from openbb_energy.eia.natural_gas.consumption_end_use import ConsumptionByEndUseFetcher
-from openbb_energy.eia.natural_gas.consumption_number_of_consumers import (
+
+from openbb_energy.eia.natural_gas.consumption import (
+    ConsumptionByEndUseFetcher,
     ConsumptionNumberOfConsumersFetcher,
 )
-
-
-# mypy: disable-error-code="list-item"
+from openbb_energy.eia.natural_gas.exploration_and_reserves import (
+    EnRCrudeOilPlusLeaseCondensateFetcher,
+)
 
 provider = Provider(
     name="eia",
@@ -16,5 +17,6 @@ provider = Provider(
     fetcher_dict={
         "ConsumptionByEndUse": ConsumptionByEndUseFetcher,
         "ConsumptionNumberOfConsumers": ConsumptionNumberOfConsumersFetcher,
+        "EnRCrudeOilPlusLeaseCondensate": EnRCrudeOilPlusLeaseCondensateFetcher,
     },
 )
