@@ -5,6 +5,8 @@ from openbb_energy.eia.natural_gas.consumption import (
     ConsumptionByEndUseFetcher,
     ConsumptionNumberOfConsumersFetcher,
     ConsumptionShareOfGasDeliveredFetcher,
+    ConsumptionAccountOfOthersFetcher,
+    ConsumptionHeatContentFetcher,
 )
 from openbb_energy.eia.natural_gas.exploration_and_reserves import (
     EnRCrudeOilPlusLeaseCondensateFetcher,
@@ -20,5 +22,7 @@ provider = Provider(
         "ConsumptionNumberOfConsumers": ConsumptionNumberOfConsumersFetcher,
         "ConsumptionShareOfGasDelivered": ConsumptionShareOfGasDeliveredFetcher,
         "EnRCrudeOilPlusLeaseCondensate": EnRCrudeOilPlusLeaseCondensateFetcher,
+        "ConsumptionAccountOfOthers": ConsumptionAccountOfOthersFetcher,
+        "ConsumptionHeatContent": ConsumptionHeatContentFetcher,
     },
 )

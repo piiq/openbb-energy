@@ -89,3 +89,57 @@ class ConsumptionShareOfGasDeliveredFetcher(NaturalGasAnnualFetcher):
         process_warnings(response["response"])
         data: List[Dict] = response["response"]["data"]
         return data
+
+
+class ConsumptionAccountOfOthersFetcher(NaturalGasAnnualFetcher):
+    """Account of others Fetcher."""
+
+    @staticmethod
+    def extract_data(  # pylint: disable=unused-argument
+        query: NaturalGasQueryParams,
+        credentials: Optional[Dict[str, str]],
+        **kwargs: Any,
+    ) -> List[dict]:
+        """Extract data."""
+        api_key = credentials.get("eia_api_key") if credentials else ""
+
+        params = make_eia_params(query=query, facet_list=NATURAL_GAS_FACET_LIST)
+        params["api_key"] = api_key
+
+        response = make_eia_request(
+            api="natural-gas",
+            route1="cons",
+            route2="acct",
+            api_version=2,
+            params=params,
+        )
+        process_warnings(response["response"])
+        data: List[Dict] = response["response"]["data"]
+        return data
+
+
+class ConsumptionHeatContentFetcher(NaturalGasFetcher):
+    """Heat content Fetcher."""
+
+    @staticmethod
+    def extract_data(  # pylint: disable=unused-argument
+        query: NaturalGasQueryParams,
+        credentials: Optional[Dict[str, str]],
+        **kwargs: Any,
+    ) -> List[dict]:
+        """Extract data."""
+        api_key = credentials.get("eia_api_key") if credentials else ""
+
+        params = make_eia_params(query=query, facet_list=NATURAL_GAS_FACET_LIST)
+        params["api_key"] = api_key
+
+        response = make_eia_request(
+            api="natural-gas",
+            route1="cons",
+            route2="sum",
+            api_version=2,
+            params=params,
+        )
+        process_warnings(response["response"])
+        data: List[Dict] = response["response"]["data"]
+        return data

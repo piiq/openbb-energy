@@ -1,6 +1,6 @@
 """EIA Natural Gas Consumption Summary Fetcher for OpenBB Energy."""
 import warnings
-from typing import Literal, Optional, List, Any, Dict
+from typing import Literal, Optional, List, Any, Dict, Union
 
 from openbb_core.provider.abstract.fetcher import Fetcher
 from openbb_core.provider.abstract.data import Data
@@ -103,7 +103,7 @@ class NaturalGasData(Data):
     series_description: str = Field(
         description="Series Description", alias="series-description"
     )
-    value: Optional[float | str] = Field(description="Value")
+    value: Optional[Union[float, str]] = Field(description="Value")
     units: str = Field(description="Units of measurement")
 
 
