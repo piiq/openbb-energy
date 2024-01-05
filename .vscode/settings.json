@@ -1,0 +1,77 @@
+{
+    "editor.renderWhitespace": "all",
+    "editor.rulers": [
+        88,
+        120
+    ],
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true,
+    "files.insertFinalNewline": true,
+    "files.exclude": {
+        "venv/": true,
+        ".mypy_cache/": true,
+        "**/node_modules/": true,
+        "**/__pycache__/": true
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": false,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "never",
+            "source.fixAll": "explicit"
+        },
+        "editor.formatOnType": false,
+    },
+    "python.defaultInterpreterPath": "venv/bin/python",
+    "flake8.path": ["venv/bin/flake8"],
+    "flake8.importStrategy": "fromEnvironment",
+    "flake8.args": [
+        "--max-line-length=120"
+    ],
+    "pylint.importStrategy": "fromEnvironment",
+    "pylint.args": [
+        "--disable=C0301"
+    ],
+    "mypy-type-checker.path": ["venv/bin/mypy"],
+    "mypy-type-checker.interpreter": ["venv/bin/python"],
+    "mypy-type-checker.importStrategy": "fromEnvironment",
+    "python.languageServer": "Pylance",
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "python.testing.pytestArgs": [
+        ".",
+    ],
+    "python.testing.autoTestDiscoverOnSaveEnabled": true,
+    "python.terminal.activateEnvironment": true,
+    "workbench.colorTheme": "GitHub Dark",
+    "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+    "workbench.preferredDarkColorTheme": "GitHub Dark Dimmed",
+    "workbench.preferredLightColorTheme": "GitHub Light Default",
+    "workbench.preferredHighContrastLightColorTheme": "Default Light+",
+    "workbench.fontAliasing": "antialiased",
+    "workbench.statusBar.visible": true,
+    "python.analysis.typeCheckingMode": "off",
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#7293be",
+        "activityBar.background": "#7293be",
+        "activityBar.foreground": "#15202b",
+        "activityBar.inactiveForeground": "#15202b99",
+        "activityBarBadge.background": "#ebd3de",
+        "activityBarBadge.foreground": "#15202b",
+        "commandCenter.border": "#e7e7e799",
+        "sash.hoverBorder": "#7293be",
+        "statusBar.background": "#5078ad",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#7293be",
+        "statusBarItem.remoteBackground": "#5078ad",
+        "statusBarItem.remoteForeground": "#e7e7e7",
+        "titleBar.activeBackground": "#5078ad",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#5078ad99",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#5078AD",
+}
