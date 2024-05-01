@@ -1,3 +1,9 @@
+.mypy_cache/
+**/node_modules/
+**/__pycache__/
+**/.ruff_cache/
+**/.pytest_cache/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
