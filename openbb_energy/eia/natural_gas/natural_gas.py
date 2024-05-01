@@ -1,4 +1,5 @@
-"""EIA Natural Gas Consumption Summary Fetcher for OpenBB Energy."""
+"""EIA Natural Gas Consumption Models."""
+
 import warnings
 from typing import Literal, Optional, List, Any, Dict, Union
 
