@@ -1,4 +1,5 @@
 """Consumption Data Fetchers."""
+
 from typing import Any, Dict, List, Optional
 
 from ..utils.helpers import make_eia_params, make_eia_request, process_warnings
@@ -32,9 +33,13 @@ class ConsumptionByEndUseFetcher(NaturalGasFetcher):
             api_version=2,
             params=params,
         )
-        process_warnings(response["response"])
-        data: List[Dict] = response["response"]["data"]
-        return data
+
+        if "response" in response:
+            process_warnings(response["response"])
+            data: List[Dict] = response["response"]["data"]
+            return data
+        elif "error" in response:
+            raise ValueError(response["error"])
 
 
 class ConsumptionNumberOfConsumersFetcher(NaturalGasAnnualFetcher):
