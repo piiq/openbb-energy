@@ -1,4 +1,5 @@
 """EIA API helpers."""
+
 import warnings
 from typing import Dict, List, Optional
 

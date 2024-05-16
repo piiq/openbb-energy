@@ -1,12 +1,14 @@
 """EIA Natural Gas Consumption Models."""
 
 import warnings
-from typing import Literal, Optional, List, Any, Dict, Union
+from datetime import date as dateType
+from datetime import datetime
+from typing import Any, Dict, List, Literal, Optional, Union
 
-from openbb_core.provider.abstract.fetcher import Fetcher
 from openbb_core.provider.abstract.data import Data
+from openbb_core.provider.abstract.fetcher import Fetcher
 from openbb_core.provider.abstract.query_params import QueryParams
-from pydantic import Field
+from pydantic import Field, field_validator
 
 _warn = warnings.warn
 
@@ -93,7 +95,7 @@ class NaturalGasQueryParams(QueryParams):
 class NaturalGasData(Data):
     """EIA natural gas survey data."""
 
-    period: str = Field(description="Period")
+    period: dateType = Field(description="Datetime object representing the period.")
     area: str = Field(description="Area ID", alias="duoarea")
     area_name: str = Field(description="Area Name", alias="area-name")
     product: str = Field(description="Product ID")
@@ -106,6 +108,23 @@ class NaturalGasData(Data):
     )
     value: Optional[Union[float, str]] = Field(description="Value")
     units: str = Field(description="Units of measurement")
+
+    @field_validator("period", mode="before")
+    def parse_period(cls, value):
+        """Parse period string to datetime."""
+        try:
+            if "-" in value:
+                return datetime.strptime(value, "%Y-%m").date()
+            return datetime.strptime(value, "%Y").date()
+        except ValueError:
+            raise ValueError("Period must be in YYYY or YYYY-MM format")
+
+    @field_validator("value", mode="before")
+    def parse_value(cls, value):
+        """Parse value string to float."""
+        if value:
+            return float(value)
+        return None
 
 
 class NaturalGasBaseFetcher(
@@ -135,8 +154,6 @@ class NaturalGasBaseFetcher(
         query: NaturalGasQueryParams, data: List[dict], **kwargs: Any
     ) -> List[NaturalGasData]:
         """Transform data."""
-        for d in data:
-            d["period"] = str(d["period"])
         return [NaturalGasData(**d) for d in data]
 
 

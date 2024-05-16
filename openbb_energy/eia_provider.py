@@ -1,16 +1,18 @@
 """EIA Data Provider for OpenBB Energy."""
+
 from openbb_core.provider.abstract.provider import Provider
 
-from openbb_energy.eia.natural_gas.consumption import (
+from .eia.natural_gas.consumption import (
     ConsumptionByEndUseFetcher,
     ConsumptionNumberOfConsumersFetcher,
     ConsumptionShareOfGasDeliveredFetcher,
     ConsumptionAccountOfOthersFetcher,
     ConsumptionHeatContentFetcher,
 )
-from openbb_energy.eia.natural_gas.exploration_and_reserves import (
+from .eia.natural_gas.exploration_and_reserves import (
     EnRCrudeOilPlusLeaseCondensateFetcher,
 )
+from .eia.outlook.projections import IEOFetcher
 
 provider = Provider(
     name="eia",
@@ -24,5 +26,6 @@ provider = Provider(
         "EnRCrudeOilPlusLeaseCondensate": EnRCrudeOilPlusLeaseCondensateFetcher,
         "ConsumptionAccountOfOthers": ConsumptionAccountOfOthersFetcher,
         "ConsumptionHeatContent": ConsumptionHeatContentFetcher,
+        "InternationalEnergyOutlook": IEOFetcher,
     },
 )
