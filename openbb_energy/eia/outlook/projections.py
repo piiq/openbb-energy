@@ -35,7 +35,7 @@ class IEOQueryParams(QueryParams):
         alias="end",
     )
 
-    filter_by_history: Literal["projection", "historic"] = Field(
+    filter_by_history: Literal["PROJECTION", "HISTORIC"] = Field(
         title="History",
         description="Historic or Projection",
         default=None,
