@@ -54,9 +54,14 @@ def make_eia_request(
         JSON response.
     """
     route_url = f"{route1}/{route2}" if route2 else route1
-    data_url = (
-        BASE_URL + f"/v{str(api_version)}" + f"/{api}" + f"/{route_url}" + "/data"
-    )
+    if route_url:
+        data_url = (
+            BASE_URL + f"/v{str(api_version)}" + f"/{api}" + f"/{route_url}" + "/data"
+        )
+    else:
+        data_url = (
+            BASE_URL + f"/v{str(api_version)}" + f"/{api}" + "/data"
+        )
     r = requests.get(
         data_url,
         params=params,
