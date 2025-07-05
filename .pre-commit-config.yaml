@@ -9,3 +9,4 @@ repos:
     rev: v1.4.0
     hooks:
     -   id: detect-secrets
+        args: ['--exclude-lines', 'MOCK_API_KEY']
