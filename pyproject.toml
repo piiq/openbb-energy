@@ -7,13 +7,12 @@ readme = "README.md"
 packages = [{ include = "openbb_energy" }]
 
 [tool.poetry.dependencies]
-python = "^3.8,<3.12"
-openbb-core = "^1.1.6"
-openbb-platform-pro-backend = {git = "https://github.com/OpenBB-finance/openbb-platform-pro-backend.git"}
+python = "^3.9.21,<3.13"
+openbb-core = "^1.4.7"
+openbb-platform-api = "^1.1.10"
 
 [tool.poetry.group.dev.dependencies]
-openbb-devtools = "^1.0.0"
-types-requests = "^2.31.0.10"
+openbb-devtools = "^1.4.3"
 
 [build-system]
 requires = ["poetry-core"]
