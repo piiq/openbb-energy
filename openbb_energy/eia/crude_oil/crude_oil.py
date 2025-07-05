@@ -36,35 +36,95 @@ class CrudeOilImportsQueryParams(QueryParams):
         alias="end",
     )
 
-    filter_by_origin_id: Optional[str] = Field(
+    filter_by_origin_id: Optional[Literal[
+        "CTY_CA", "CTY_BL", "CTY_NI", "CTY_SY", "CTY_TH", "CTY_KZ", "REG_ME", "CTY_PM", "CTY_CO", "CTY_EK",
+        "CTY_AG", "CTY_AR", "CTY_VM", "CTY_CG", "CTY_GH", "CTY_IR", "CTY_GT", "CTY_IZ", "CTY_AS", "CTY_VE",
+        "CTY_MU", "CTY_IV", "CTY_AL", "CTY_DA", "CTY_TS", "CTY_BB", "CTY_CF", "CTY_EG", "CTY_KU", "CTY_YM",
+        "REG_EU", "OPN_Y", "CTY_AE", "CTY_LY", "CTY_NO", "CTY_MR", "CTY_NL", "REG_OA", "REG_AF", "OPN_N",
+        "CTY_SP", "CTY_OD", "CTY_PP", "CTY_CH", "CTY_GB", "CTY_AJ", "CTY_AO", "CTY_BH", "CTY_BR", "CTY_MX",
+        "CTY_RS", "CTY_SA", "CTY_ID", "REG_CA", "CTY_CD", "CTY_EC", "CTY_CM", "CTY_TD", "CTY_UK", "CTY_BX",
+        "REG_AP", "CTY_GY", "CTY_MY", "CTY_PE", "CTY_QA", "CTY_IT", "CTY_SF", "REG_EA", "WORLD", "CTY_BF", "CTY_SG"
+    ]] = Field(
         description="Filter by origin ID. You can provide a comma separated list of origin IDs."
         + " Examples: CTY_CA (Canada), CTY_SA (Saudi Arabia), REG_ME (Middle East).",
         default=None,
         alias="originId",
     )
 
-    filter_by_origin_type: Optional[str] = Field(
+    filter_by_origin_type: Optional[Literal["REG", "CTY", "OPN", "WORLD"]] = Field(
         description="Filter by origin type. You can provide a comma separated list of origin types."
         + " Choose from: REG (Region), CTY (Country), OPN (OPEC/non-OPEC), WORLD (World).",
         default=None,
         alias="originType",
     )
 
-    filter_by_destination_id: Optional[str] = Field(
+    filter_by_destination_id: Optional[Literal[
+        "RF_394", "RF_528", "RF_530", "RF_2403", "RF_310", "RF_148", "RF_506", "RF_83", "RF_98", "RF_289",
+        "RF_92", "RF_3114", "RF_3828", "RF_339", "RF_4832", "RF_4870", "RF_363", "RF_4509", "RF_4831", "RF_4913",
+        "RF_2396", "RF_3587", "RF_290", "RF_3862", "RF_4347", "RF_2677", "RF_4879", "RF_4076", "RF_3594", "RF_2394",
+        "RS_MN", "RS_AR", "RS_ID", "RS_MO", "RS_FL", "RP_5", "PT_1003", "PT_2001", "PT_5104", "PT_5311",
+        "PT_5310", "PT_0901", "PT_3002", "PT_3303", "PT_3382", "PT_3402", "PS_LA", "PS_WY", "PT_2901", "PP_3",
+        "RF_3004", "RF_3021", "PT_2802", "RF_5032", "PT_2801", "RF_2367", "RF_282", "PS_IA", "RF_2407", "PT_3701",
+        "RF_3694", "PT_2713", "RF_4301", "RF_203", "RF_278", "RF_526", "RF_2379", "RF_2398", "RF_139", "RF_121",
+        "RF_80", "RF_3124", "RF_385", "RF_401", "RF_2395", "RF_303", "RF_479", "RF_529", "RF_2703", "RF_87",
+        "RF_159", "RF_2402", "RF_2372", "RF_2388", "RF_209", "RF_3292", "RF_3895", "RF_2404", "RF_3965", "RF_3821",
+        "RS_LA", "RS_MT", "RS_WY", "RS_NY", "RS_MD", "RP_6", "PT_2004", "PT_2002", "PT_2809", "PT_3005",
+        "PT_1402", "PT_3304", "PT_3601", "PT_3322", "PT_3403", "PT_1001", "PS_PA", "PS_TX", "PS_NJ", "PT_1104",
+        "PS_MN", "PS_ND", "PT_3308", "PS_OR", "PP_6", "PP_1", "US", "PT_2909", "PT_3007", "PT_3905",
+        "PT_3205", "RF_3070", "PT_4501", "RF_3592", "RF_3135", "RF_4085", "PT_5502", "PT_2103", "RF_223", "RF_308",
+        "RF_523", "RF_531", "RF_2359", "RF_4690", "RF_125", "RF_434", "RF_119", "RF_288", "RF_2406", "RF_187",
+        "RF_228", "RF_505", "RF_150", "RF_276", "RF_2387", "RF_4619", "RF_3575", "RF_4953", "RF_3251", "RF_2350",
+        "RS_TX", "RS_IL", "RS_IN", "RP_1", "PT_3902", "PT_4105", "PT_1118", "PT_1101", "PT_1903", "PT_2101",
+        "PT_5312", "PT_2820", "PT_3201", "PT_1103", "PT_3009", "PT_3803", "PT_3501", "PT_1703", "PT_3425", "PT_3604",
+        "PT_3414", "PT_5504", "PS_MT", "PS_NY", "PS_VI", "PS_GA", "PS_MD", "RF_4647", "RF_3569", "RF_3921",
+        "PT_0206", "PT_2102", "PT_3906", "PT_3808", "PT_4102", "RF_3056", "RF_2631", "RF_4830", "RF_4547", "RF_5161",
+        "RF_329", "RF_2386", "RF_2389", "RF_163", "RF_164", "RF_2393", "RF_124", "RF_392", "RF_480", "RF_517",
+        "RF_314", "RF_442", "RF_2344", "RF_497", "RF_2380", "RF_97", "RF_538", "RF_4784", "RF_78", "RF_2661",
+        "RF_2381", "RF_3959", "RF_3571", "RF_230", "RS_PA", "RS_DE", "RS_MI", "PT_2010", "PT_5306", "PT_2013",
+        "PT_1102", "PT_3401", "PT_1108", "PT_3903", "PT_3316", "PS_VA", "PS_IL", "PS_OH", "PS_WI", "PS_HI",
+        "PT_5506", "PS_ID", "RF_4825", "PT_3820", "RF_4960", "RF_2924", "RF_4110", "RF_386", "RS_MA", "RF_3962",
+        "RF_3237", "RF_3770", "PT_2803", "RF_3325", "PT_0715", "RF_2665", "RF_2580", "RF_4015", "RF_317", "RF_322",
+        "RF_332", "RF_307", "RF_256", "RF_115", "RF_502", "RF_503", "RF_3238", "RF_507", "RF_217", "RF_257",
+        "RF_2383", "RF_2357", "RF_2369", "RF_202", "RF_501", "RF_2521", "RF_4967", "RF_4291", "RS_MS", "RS_ND",
+        "RS_OH", "RS_OK", "RS_VI", "RS_GA", "RS_VA", "RS_IA", "PT_4503", "PT_5301", "PT_5505", "PT_2812",
+        "PT_3010", "PT_2104", "PT_1105", "PT_3307", "PT_5203", "PT_3417", "PS_DE", "PS_UT", "PS_AZ", "PS_AR",
+        "PP_2", "RF_2423", "RF_3024", "RF_3953", "RF_99", "RF_408", "PS_IN", "RF_4499", "RF_3593", "RF_2700",
+        "RF_3304", "RF_5258", "RF_2980", "RF_2392", "RF_3109", "RF_4414", "RF_2560", "RF_4021", "PT_3001", "RF_255",
+        "RF_333", "RF_335", "RF_387", "RF_391", "RF_444", "RF_323", "RF_465", "RF_89", "RF_162", "RF_168",
+        "RF_206", "RF_2385", "RF_2401", "RF_458", "RF_4622", "RF_185", "RF_342", "RF_2349", "RF_3854", "RF_2541",
+        "RF_2391", "RF_3780", "RF_4952", "RS_CA", "RS_NM", "RS_WI", "RS_CO", "RP_2", "RP_4", "PT_2704",
+        "PT_3901", "PT_1004", "PS_CA", "PS_MS", "PS_WA", "PS_MI", "PS_FL", "PT_1816", "RF_4867", "RF_3894",
+        "PS_MA", "RF_3851", "RF_262", "RF_4998", "PS_VT", "RF_3215", "RF_4663", "RF_3043", "RF_3071", "RF_4907",
+        "RF_4834", "RF_205", "RF_2660", "RF_240", "RF_3766", "RF_4033", "RF_4011", "RF_4304", "RF_2772", "RF_4408",
+        "RF_382", "RF_227", "RF_275", "RF_287", "RF_297", "RF_302", "RF_403", "RF_2540", "RF_4643", "RF_161",
+        "RF_191", "RF_301", "RF_204", "RF_4538", "RF_4624", "RF_4548", "RF_190", "RF_237", "RF_2410", "RF_2351",
+        "RF_2399", "RF_4072", "RF_2927", "RF_3138", "RF_3265", "RF_340", "RF_4835", "RF_3596", "RF_4546", "RF_2363",
+        "RF_153", "RF_2370", "RF_4966", "RF_2409", "RF_438", "RF_4971", "RF_2599", "RS_NJ", "RS_WA", "RS_AL",
+        "RS_KS", "RS_AK", "PT_2830", "PT_1901", "PT_2709", "PT_3126", "PT_3310", "PT_3608", "PT_2305", "PT_3301",
+        "PT_3004", "PT_2604", "PT_3006", "PS_CO", "PT_2003", "PS_AK", "PT_3309", "PT_3306", "PS_MO", "PS_KY",
+        "PS_NE", "PP_4", "RF_4963", "RF_4933", "RF_4008", "PT_3904", "PT_3410", "RF_5107", "RF_4790", "PT_3003",
+        "PT_3101", "PT_2712", "RF_2990", "RF_499", "RF_3688", "RF_225", "RF_238", "RF_336", "RF_393", "RF_478",
+        "RF_496", "RF_2378", "RF_279", "RF_343", "RF_120", "RF_351", "RF_116", "RF_454", "RF_2384", "RF_2400",
+        "RF_226", "RF_309", "RF_2366", "RF_3969", "RF_3279", "RF_2361", "RF_3723", "RF_4500", "RS_HI", "RS_KY",
+        "RS_UT", "RS_NE", "RS_TN", "RS_OR", "RP_3", "PT_2017", "PT_2711", "PT_3404", "PT_3802", "PT_1303",
+        "PT_3302", "PT_0712", "PT_1002", "PS_AL", "PT_4116", "PT_2014", "PT_2015", "PT_3801", "PS_OK", "PP_5",
+        "RF_3876", "RF_498", "RF_2341", "PT_0401", "RF_2983", "RF_353", "RF_4917", "RF_3915", "RF_2989", "RF_5126",
+        "RF_5125", "RF_4666", "RF_5083", "PT_3907", "PT_2811", "RF_3756", "RF_5354", "RF_4005"
+    ]] = Field(
         description="Filter by destination ID. You can provide a comma separated list of destination IDs."
         + " Examples: RF_394 (refinery), PT_1003 (port), PS_LA (state).",
         default=None,
         alias="destinationId",
     )
 
-    filter_by_destination_type: Optional[str] = Field(
+    filter_by_destination_type: Optional[Literal["PS", "US", "RP", "PP", "RS", "PT", "RF"]] = Field(
         description="Filter by destination type. You can provide a comma separated list of destination types."
         + " Choose from: PS (Port State), US (United States), RP (Refinery PADD), PP (Port PADD), RS (Refinery State), PT (Port), RF (Refinery).",
         default=None,
         alias="destinationType",
     )
 
-    filter_by_grade_id: Optional[str] = Field(
+    filter_by_grade_id: Optional[Literal["HSW", "MED", "HSO", "LSO", "LSW"]] = Field(
         description="Filter by grade ID. You can provide a comma separated list of grade IDs."
         + " Choose from: HSW (Heavy Sweet), MED (Medium), HSO (Heavy Sour), LSO (Light Sour), LSW (Light Sweet).",
         default=None,
