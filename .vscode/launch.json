@@ -6,26 +6,23 @@
     "configurations": [
         {
             "name": "Python: Current File",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
             "justMyCode": true
         },
         {
-            "name": "API",
-            "type": "python",
+            "name": "OpenBB Energy API",
+            "type": "debugpy",
             "request": "launch",
-            "module": "uvicorn",
-            "args": [
-                "openbb_core.api.rest_api:app",
-                "--host",
-                "0.0.0.0",
-                "--port",
-                "8000",
-                "--reload"
-            ],
+            "program": "${workspaceFolder}/.venv/bin/openbb-api",
+            "args": [],
+            "console": "integratedTerminal",
+            "envFile": "${workspaceFolder}/.env",
+            "cwd": "${workspaceFolder}",
+            "python": "${command:python.interpreterPath}",
             "justMyCode": true
-        },
+        }
     ]
 }
