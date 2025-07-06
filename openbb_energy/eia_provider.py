@@ -12,12 +12,7 @@ from .eia.natural_gas.consumption import (
 from .eia.natural_gas.exploration_and_reserves import (
     EnRCrudeOilPlusLeaseCondensateFetcher,
 )
-from .eia.crude_oil.imports import (
-    CrudeOilImportsByCountryAndDestinationFetcher,
-    CrudeOilImportsByCountryFetcher,
-    CrudeOilImportsByDestinationFetcher,
-    CrudeOilImportsByGradeFetcher,
-)
+from .eia.crude_oil.imports import CrudeOilImportsFetcher
 from .eia.outlook.projections import IEOFetcher
 
 provider = Provider(
@@ -32,10 +27,7 @@ provider = Provider(
         "EnRCrudeOilPlusLeaseCondensate": EnRCrudeOilPlusLeaseCondensateFetcher,
         "ConsumptionAccountOfOthers": ConsumptionAccountOfOthersFetcher,
         "ConsumptionHeatContent": ConsumptionHeatContentFetcher,
-        "CrudeOilImportsByCountryAndDestination": CrudeOilImportsByCountryAndDestinationFetcher,
-        "CrudeOilImportsByCountry": CrudeOilImportsByCountryFetcher,
-        "CrudeOilImportsByDestination": CrudeOilImportsByDestinationFetcher,
-        "CrudeOilImportsByGrade": CrudeOilImportsByGradeFetcher,
+        "CrudeOilImports": CrudeOilImportsFetcher,
         "InternationalEnergyOutlook": IEOFetcher,
     },
 )

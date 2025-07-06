@@ -11,10 +11,12 @@ _warn = warnings.warn
 BASE_URL = "https://api.eia.gov"
 
 
-def make_eia_params(query: QueryParams, facet_list: List[str]):
+def make_eia_params(
+    query: QueryParams, facet_list: List[str], data_param: str = "value"
+):
     """Make EIA API parameters. This includes applying filters."""
     params = query.model_dump(by_alias=True, exclude_none=True)
-    params["data[0]"] = "value"
+    params["data[0]"] = data_param
 
     for facet in facet_list:
         if facet in params:
@@ -26,7 +28,7 @@ def make_eia_params(query: QueryParams, facet_list: List[str]):
 
 def make_eia_request(
     api: str,
-    route1: str,
+    route1: str | None,
     route2: Optional[str],
     api_version: int,
     params: Dict,
@@ -59,9 +61,7 @@ def make_eia_request(
             BASE_URL + f"/v{str(api_version)}" + f"/{api}" + f"/{route_url}" + "/data"
         )
     else:
-        data_url = (
-            BASE_URL + f"/v{str(api_version)}" + f"/{api}" + "/data"
-        )
+        data_url = BASE_URL + f"/v{str(api_version)}" + f"/{api}" + "/data"
     r = requests.get(
         data_url,
         params=params,

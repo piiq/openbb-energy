@@ -1,7 +1,19 @@
 """Constants for EIA Crude Oil Import Models."""
 
+from typing import Literal, get_args
+from pydantic import JsonValue
+
+CrudeOilFacetListType = Literal[
+    "originId",
+    "originType",
+    "destinationId",
+    "destinationType",
+    "gradeId",
+]
+CRUDE_OIL_FACET_LIST: list[str] = list(get_args(CrudeOilFacetListType))
+
 # Origin IDs (71 available countries/regions)
-ORIGIN_IDS = [
+OriginIdType = Literal[
     "CTY_CA",
     "CTY_BL",
     "CTY_NI",
@@ -74,9 +86,10 @@ ORIGIN_IDS = [
     "CTY_BF",
     "CTY_SG",
 ]
+ORIGIN_IDS: list[JsonValue] = list(get_args(OriginIdType))
 
 # Destination IDs (508 available refineries, ports, states, PADD regions)
-DESTINATION_IDS = [
+DestinationIdType = Literal[
     "RF_394",
     "RF_528",
     "RF_530",
@@ -586,8 +599,7 @@ DESTINATION_IDS = [
     "RF_5354",
     "RF_4005",
 ]
+DESTINATION_IDS: list[JsonValue] = list(get_args(DestinationIdType))
 
-# Type aliases for better type hints without repeating long lists
-# These provide validation at runtime while keeping type hints clean
-OriginIdType = str  # Validated against ORIGIN_IDS at runtime
-DestinationIdType = str  # Validated against DESTINATION_IDS at runtime
+GradeIdType = Literal["HSW", "MED", "HSO", "LSO", "LSW"]
+GRADE_IDS: list[JsonValue] = list(get_args(GradeIdType))
