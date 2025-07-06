@@ -6,7 +6,6 @@ from ..utils.helpers import make_eia_params, make_eia_request, process_warnings
 from .crude_oil import (
     CrudeOilImportsQueryParams,
     CrudeOilImportsFetcher,
-    CrudeOilImportsAnnualFetcher,
     CRUDE_OIL_FACET_LIST,
 )
 
@@ -134,3 +133,4 @@ class CrudeOilImportsByGradeFetcher(CrudeOilImportsFetcher):
             return data
         elif "error" in response:
             raise ValueError(response["error"])
+        return []
